@@ -1,0 +1,42 @@
+spring:
+  devtools:
+    restart.enabled: true
+    livereload.enabled: false
+  mvc.favicon.enabled: false
+  data:
+    rest:
+      defaultPageSize: 15
+      maxPageSize: 100
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;w=backend
+    username: user
+    password: 12345
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  jackson:
+    mapper:
+      default_view_inclusion: true
+    serialization:
+      write_dates_as_timestamps: false
+
+security:
+  oauth2.resource.filter-order: 3
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework: WARN
+    org.springframework.web: INFO
+    springfox: WARN
+    com.sigfox.welub: DEBUG
+
+backend:
+  oauth2:
+    client_id: backend-app
+    client_secret: backend-secret
+    scope: backend

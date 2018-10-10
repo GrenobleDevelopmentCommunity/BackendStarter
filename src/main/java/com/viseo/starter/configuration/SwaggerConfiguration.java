@@ -29,7 +29,7 @@ public class SwaggerConfiguration {
                 .apiInfo(apiInfo())
                 .select() // select exposed endpoints
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api/v.*/.*"))
+                .paths(PathSelectors.any())
                 .build()
                 .pathMapping("/")
                 .useDefaultResponseMessages(false) // disable 401, 403, ...
@@ -47,7 +47,7 @@ public class SwaggerConfiguration {
                 .title("Backend - Starter")
                 .description("Backend")
                 .termsOfServiceUrl("")
-                .license("")
+                .license("MIT")
                 .licenseUrl("")
                 .version("1.0")
                 .build();

@@ -11,12 +11,14 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PostRemove;
 import javax.validation.Valid;
+import javax.xml.ws.http.HTTPException;
 
 @RestController
 @RequestMapping("/api/users")
@@ -44,9 +46,15 @@ public class UserController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody @Valid CreateUser newUser) throws EntityNotFoundException,
-            EntityExistsException {
-        return userService.createUser(newUser);
+    public ResponseEntity<User> createUser(@RequestBody @Valid CreateUser newUser) throws EntityNotFoundException {
+        try {
+            return new ResponseEntity(userService.createUser(newUser), HttpStatus.CREATED);
+        }
+        catch (EntityExistsException e)
+        {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+
     }
 
 }

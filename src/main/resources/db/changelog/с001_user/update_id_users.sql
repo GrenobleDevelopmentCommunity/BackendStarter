@@ -1,0 +1,1 @@
+ALTER TABLE backend.dbo.users ADD CONSTRAINT users_pk PRIMARY KEY (id)

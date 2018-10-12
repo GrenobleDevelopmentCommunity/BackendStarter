@@ -4,9 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.codehaus.jackson.annotate.JsonCreator;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 

@@ -22,6 +22,11 @@ spring:
     serialization:
       write_dates_as_timestamps: false
 
+
+security:
+  basic.enabled: false
+  oauth2.resource.filter-order: 3
+
 server:
   port: 8080
 
@@ -36,4 +41,3 @@ backend:
   oauth2:
     client_id: backend-app
     client_secret: backend-secret
-    scope: backend

@@ -6,3 +6,5 @@ CREATE TABLE users
 )
 CREATE UNIQUE INDEX users_id_uindex ON users (id)
 CREATE UNIQUE INDEX users_email_uindex ON users (email)
+
+insert INTO users values ('admin@admin.admin', 'admin');

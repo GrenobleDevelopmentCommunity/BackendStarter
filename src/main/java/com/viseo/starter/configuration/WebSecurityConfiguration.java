@@ -33,8 +33,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .anonymous().disable()
                 .authorizeRequests()
-                .antMatchers( "/swagger-ui.html**", "/webjars/springfox-swagger-ui/**",
-                        "/swagger-resources/**", "/v2/api-docs", "/api-docs/**").permitAll();
+                .antMatchers("/oauth/token","/oauth/token/revoke").permitAll()
+                .antMatchers("/swagger-ui.html**", "/webjars/springfox-swagger-ui/**", "/swagger-resources/**", "/v2/api-docs").permitAll()
+                .anyRequest().authenticated();;
     }
 
     @Override

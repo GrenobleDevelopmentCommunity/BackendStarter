@@ -24,8 +24,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     private static final String SCOPE_READ = "read";
     private static final String SCOPE_WRITE = "write";
     private static final String TRUST = "trust";
-    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 3600;
-    private static final int FREFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
+    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 0;
 
     private final JdbcTokkenStore jdbcTokkenStore;
 
@@ -44,9 +43,9 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
                 .withClient(CLIEN_ID)
                 .secret(CLIENT_SECRET)
                 .authorizedGrantTypes(GRANT_TYPE, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT )
+                .autoApprove(true)
                 .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
-                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS).
-                refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
+                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
     }
 
     @Override

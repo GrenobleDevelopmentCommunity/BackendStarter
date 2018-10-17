@@ -2,6 +2,7 @@ package com.viseo.starter.web.v1;
 
 import com.viseo.starter.model.CreateUser;
 import com.viseo.starter.model.User;
+import com.viseo.starter.security.CustomUserDetails;
 import com.viseo.starter.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityExistsException;

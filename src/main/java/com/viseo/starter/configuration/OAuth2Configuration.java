@@ -14,20 +14,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     @Value("${backend.oauth2.client_id}")
-    private String CLIEN_ID;
+    private String client_id;
     @Value("${backend.oauth2.client_secret}")
-    private String CLIENT_SECRET;
-    private static final String GRANT_TYPE = "password";
-    private static final String AUTHORIZATION_CODE = "authorization_code";
-    private static final String REFRESH_TOKEN = "refresh_token";
-    private static final String IMPLICIT = "implicit";
-    private static final String SCOPE_READ = "read";
-    private static final String SCOPE_WRITE = "write";
-    private static final String TRUST = "trust";
-    private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 0;
+    private String client_secret;
 
     private final JdbcTokkenStore jdbcTokkenStore;
-
     private final AuthenticationManager authenticationManager;
 
     @Autowired
@@ -38,14 +29,11 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-        configurer
-                .jdbc(jdbcTokkenStore.dataSource())
-                .withClient(CLIEN_ID)
-                .secret(CLIENT_SECRET)
-                .authorizedGrantTypes(GRANT_TYPE, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT )
-                .autoApprove(true)
-                .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
-                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
+        configurer.inMemory()
+                .withClient(client_id)
+                .secret(client_secret)
+                .authorizedGrantTypes("refresh_token", "password")
+                .scopes("read", "write");
     }
 
     @Override

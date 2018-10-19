@@ -5,3 +5,5 @@ databaseChangeLog:
           file: db/changelog/с001_user/update_id_users.sql
   - include:
       file: db/changelog/c002_oauth/oauth.sql
+  - include:
+      file: db/changelog/c003_roles/roles.sql

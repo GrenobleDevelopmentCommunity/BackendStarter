@@ -27,6 +27,10 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name="roleID", referencedColumnName = "id",  nullable=false)
+    private Roles role;
+
 
     public User() {
     }
@@ -51,5 +55,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
     }
 }

@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/c002_oauth/oauth.sql
   - include:
       file: db/changelog/c003_roles/roles.sql
+  - include:
+      file: db/changelog/c003_roles/user_admin_update.sql

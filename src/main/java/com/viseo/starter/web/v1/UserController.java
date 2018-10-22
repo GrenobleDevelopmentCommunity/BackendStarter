@@ -53,4 +53,12 @@ public class UserController {
 
     }
 
+    @ApiOperation(value = "Get user info")
+    @ApiResponses({
+    })
+    @GetMapping("/me")
+    public User currentUser() {
+            return this.userService.getCurrentUser();
+    }
+
 }

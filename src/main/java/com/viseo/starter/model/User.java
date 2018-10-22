@@ -1,5 +1,6 @@
 package com.viseo.starter.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Entity
@@ -27,9 +27,10 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name="roleID", referencedColumnName = "id",  nullable=false)
-    private Roles role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="role_id", referencedColumnName = "id",  nullable=false)
+    // @JsonBackReference
+    private Role role;
 
 
     public User() {
@@ -57,11 +58,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Roles getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

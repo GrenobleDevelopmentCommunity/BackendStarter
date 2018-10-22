@@ -1,14 +1,17 @@
 package com.viseo.starter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name="roles")
-public class Roles {
+public class Role implements Serializable {
 
 
     @Id
@@ -16,12 +19,17 @@ public class Roles {
     private int id;
 
     @NotEmpty
+    @Column(name="role_name", length = 10, unique = true, nullable = false)
     private String roleName;
 
+
     @OneToMany(mappedBy="role")
+    @JsonIgnore
     private Set<User> users;
 
-    public Roles(final String roleName){
+    public Role(){}
+
+    public Role(final String roleName){
         this.roleName = roleName;
     }
 

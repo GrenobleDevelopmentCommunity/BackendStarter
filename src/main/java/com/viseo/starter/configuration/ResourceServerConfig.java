@@ -22,13 +22,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        AntPathMatcher pm = new AntPathMatcher();
-        boolean match = pm.match("/api/users/*", "/api/users/me"); //true
-        boolean match2 = pm.match("/api/users/*", "/api/users"); // false
-        boolean match3 = pm.match("/api/users/*", "/api/users/me/you"); // false
-        boolean match4 = pm.match("/api/users/*/**", "/api/users/me/you"); //true
-        boolean match5 = pm.match("/api/users/*/**", "/api/users/me"); // true
-        boolean match6 = pm.match("/api/users/*/**", "/api/users"); // false
         http.
                 anonymous().disable()
                 .authorizeRequests()

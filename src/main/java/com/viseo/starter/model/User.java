@@ -1,11 +1,9 @@
 package com.viseo.starter.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Builder;
 import lombok.Getter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +25,7 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
+    @JsonUnwrapped
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="role_id", referencedColumnName = "id",  nullable=false)
     // @JsonBackReference

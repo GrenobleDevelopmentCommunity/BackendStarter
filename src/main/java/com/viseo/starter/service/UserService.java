@@ -45,11 +45,9 @@ public class UserService {
 
         User user = new User(createUser.getEmail(), createUser.getPassword());
 
-        Role role = roleRepository.findOneByRoleName("user");
-        if(role==null){
-            throw new EntityNotFoundException("Role name: user Not Found");
-        }
-        user.setRole(role); //ASK : not sure if I have to do it here or in CreateUser
+
+        Role role = roleRepository.findOneByRole("user");
+        user.setRole(role);
         return userRepository.save(user);
     }
 }

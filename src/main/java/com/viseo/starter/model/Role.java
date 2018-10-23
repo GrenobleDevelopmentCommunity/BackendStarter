@@ -2,6 +2,7 @@ package com.viseo.starter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -15,12 +16,14 @@ public class Role implements Serializable {
 
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
     @NotEmpty
     @Column(name="role_name", length = 10, unique = true, nullable = false)
-    private String roleName;
+    private String role;
 
 
     @OneToMany(mappedBy="role")
@@ -29,32 +32,17 @@ public class Role implements Serializable {
 
     public Role(){}
 
-    public Role(final String roleName){
-        this.roleName = roleName;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public String getRole() {
+        return role;
     }
 
     public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(final Set<User> users) {
-        this.users = users;
-    }
-
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
 }
